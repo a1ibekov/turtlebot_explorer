@@ -1,21 +1,44 @@
 # turtlebot_explorer
 
-This project implements a sampling-based autonomous exploration strategy for navigating unknown environments using TurtleBot and LiDAR in a Gazebo simulation.
+This package contains a very small example of autonomous exploration for TurtleBot3 in ROS 2. The `Explorer` node publishes random velocity commands so the robot wanders around a Gazebo world.
 
 ## Folder Structure
 
 ```
 .
-├── config/     # Parameter files and configuration
-├── launch/     # ROS launch files
-├── maps/       # Saved maps
-├── rviz/       # RViz configurations
-├── scripts/    # Utility scripts
+├── launch/                 # Launch files
+├── resource/               # ament resource index
 ├── src/
 │   └── turtlebot_explorer/
 │       ├── __init__.py
-│       └── explorer.py
-├── worlds/     # Gazebo worlds
+│       └── explorer_node.py
+├── package.xml
+└── setup.py
 ```
 
-The `src/turtlebot_explorer/explorer.py` module contains a minimal `Explorer` class that can be extended with exploration logic.
+## Building
+
+Create a ROS 2 workspace and clone this repository into the `src` folder. Then build with `colcon`:
+
+```bash
+cd ~/ros2_ws
+colcon build --packages-select turtlebot_explorer
+source install/setup.bash
+```
+
+Ensure that the TurtleBot3 Gazebo packages are installed:
+
+```bash
+sudo apt install ros-humble-turtlebot3-gazebo
+```
+
+## Running
+
+Launch Gazebo with the exploration node:
+
+```bash
+ros2 launch turtlebot_explorer explore.launch.py
+```
+
+The robot will spawn in the default TurtleBot3 world and start moving randomly, demonstrating a very simple exploration behavior.
+
