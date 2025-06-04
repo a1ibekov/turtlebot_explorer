@@ -37,6 +37,8 @@ sudo apt install ros-humble-turtlebot3-gazebo
 Launch Gazebo with the exploration node:
 
 ```bash
+# Set the TurtleBot model for Gazebo
+export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot_explorer explore.launch.py
 ```
 
